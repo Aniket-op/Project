@@ -14,6 +14,8 @@ import Research from "@/pages/Research";
 import Contact from "@/pages/Contact";
 import SubmitResearch from "@/pages/SubmitResearch";
 import ViewResearchPaper from "@/pages/ViewResearchPaper";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/signup";
 
 function Router() {
   return (
@@ -22,6 +24,8 @@ function Router() {
       <main className="flex-grow">
         <Switch>
           <Route path="/" component={Home} />
+          <Route path="/signIn" component={SignIn} />
+          <Route path="/signUp" component={SignUp} />
           <Route path="/about" component={About} />
           <Route path="/courses" component={Courses} />
           <Route path="/research" component={Research} />
