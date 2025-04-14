@@ -60,12 +60,14 @@ export const researchPapers = pgTable("research_papers", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   summary: text("summary").notNull(),
-  tags: text("tags").array(),
+  tags: text("tags").array().notNull().default(['Research']),
   lastUpdated: timestamp("last_updated").defaultNow().notNull(),
 });
 
 export const insertResearchPaperSchema = createInsertSchema(researchPapers).omit({
   id: true,
+}).extend({
+  tags: z.array(z.string()).default([])
 });
 
 export type InsertResearchPaper = z.infer<typeof insertResearchPaperSchema>;
