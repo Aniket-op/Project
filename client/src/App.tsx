@@ -12,6 +12,8 @@ import About from "@/pages/About";
 import Courses from "@/pages/Courses";
 import Research from "@/pages/Research";
 import Contact from "@/pages/Contact";
+import SubmitResearch from "@/pages/SubmitResearch";
+import ViewResearchPaper from "@/pages/ViewResearchPaper";
 
 function Router() {
   return (
@@ -23,6 +25,8 @@ function Router() {
           <Route path="/about" component={About} />
           <Route path="/courses" component={Courses} />
           <Route path="/research" component={Research} />
+          <Route path="/submit-research" component={SubmitResearch} />
+          <Route path="/research/paper/:id" component={ViewResearchPaper} />
           <Route path="/contact" component={Contact} />
           <Route component={NotFound} />
         </Switch>

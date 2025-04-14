@@ -96,8 +96,8 @@ const Research = () => {
               articles?.map((article, index) => (
                 <Card key={index} className="bg-white shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200 overflow-hidden">
                   <img 
-                    src={article.imageUrl} 
-                    alt={article.title} 
+                    src={article.imageUrl || ''} 
+                    alt={article.title || 'Research article'} 
                     className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105" 
                   />
                   <CardContent className="p-6">

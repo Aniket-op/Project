@@ -109,7 +109,13 @@ export class MemStorage implements IStorage {
   
   async createResearchArticle(article: InsertResearchArticle): Promise<ResearchArticle> {
     const id = this.currentResearchArticleId++;
-    const researchArticle: ResearchArticle = { ...article, id };
+    const researchArticle: ResearchArticle = { 
+      ...article, 
+      id,
+      authorTitle: article.authorTitle || null,
+      publishedDate: article.publishedDate || new Date(),
+      imageUrl: article.imageUrl || null
+    };
     this.researchArticles.set(id, researchArticle);
     return researchArticle;
   }
@@ -124,7 +130,7 @@ export class MemStorage implements IStorage {
     return Array.from(this.researchPapers.values()).filter(paper => 
       paper.title.toLowerCase().includes(lowerQuery) || 
       paper.summary.toLowerCase().includes(lowerQuery) ||
-      paper.tags.some(tag => tag.toLowerCase().includes(lowerQuery))
+      (paper.tags && paper.tags.some(tag => tag.toLowerCase().includes(lowerQuery)))
     );
   }
   
@@ -134,7 +140,12 @@ export class MemStorage implements IStorage {
   
   async createResearchPaper(paper: InsertResearchPaper): Promise<ResearchPaper> {
     const id = this.currentResearchPaperId++;
-    const researchPaper: ResearchPaper = { ...paper, id };
+    const researchPaper: ResearchPaper = { 
+      ...paper, 
+      id,
+      tags: paper.tags || [],
+      lastUpdated: paper.lastUpdated || new Date()
+    };
     this.researchPapers.set(id, researchPaper);
     return researchPaper;
   }

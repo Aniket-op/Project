@@ -36,7 +36,7 @@ type FormValues = z.infer<typeof formSchema>;
 export default function SubmitResearch() {
   const [tagInput, setTagInput] = useState("");
   const { toast } = useToast();
-  const [, navigate] = useLocation();
+  const [, setLocation] = useLocation();
 
   // Initialize form with react-hook-form
   const form = useForm<FormValues>({
@@ -64,7 +64,7 @@ export default function SubmitResearch() {
         title: "Success!",
         description: "Your research paper has been submitted.",
       });
-      navigate("/research");
+      setLocation("/research");
     },
     onError: (error) => {
       toast({
@@ -210,7 +210,7 @@ export default function SubmitResearch() {
                     <Button
                       type="button"
                       variant="outline"
-                      onClick={() => navigate("/research")}
+                      onClick={() => setLocation("/research")}
                     >
                       Cancel
                     </Button>
